@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+main () {
+    local name='you'
+    if [ $# -ne 0 ]; then
+	name=$1
+    fi
+    echo "One for $name, one for me."
+}
+
+main $@
