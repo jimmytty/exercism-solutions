@@ -1,0 +1,33 @@
+        IDENTIFICATION DIVISION.
+        PROGRAM-ID. ISOGRAM.
+        ENVIRONMENT DIVISION.
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+        01 WS-PHRASE PIC X(60).
+        01 WS-RESULT PIC 99.
+        01 WS-STRING PIC X(60).
+        01 WS-ALPHA.
+           02 WS-LETTER PIC X(1) OCCURS 26 TIMES.
+        01 WS-TMP       PIC 9(2).
+        01 I            PIC 9(2).
+        PROCEDURE DIVISION.
+        ISOGRAM.
+
+        MOVE 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' TO WS-ALPHA
+        MOVE FUNCTION UPPER-CASE (WS-PHRASE) TO WS-STRING
+
+        MOVE 1 TO WS-RESULT
+        MOVE 1 TO I
+        PERFORM UNTIL I >= 27
+            MOVE 0 TO WS-TMP
+            INSPECT WS-STRING TALLYING WS-TMP FOR ALL WS-LETTER(I)
+            IF WS-TMP > 1 THEN
+                MOVE 0 TO WS-RESULT
+                MOVE 27 TO I
+            END-IF
+            ADD 1 TO I
+        END-PERFORM
+
+        CONTINUE.
+        ISOGRAM-EXIT.
+        EXIT.
