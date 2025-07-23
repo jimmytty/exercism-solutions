@@ -1,0 +1,45 @@
+
+Execute (an empty string):
+  let g:value = ""
+  let g:expected = ""
+  AssertEqual g:expected, Reverse(g:value)
+
+Execute (a word):
+  let g:value = "robot"
+  let g:expected = "tobor"
+  AssertEqual g:expected, Reverse(g:value)
+
+Execute (a capitalized word):
+  let g:value = "Ramen"
+  let g:expected = "nemaR"
+  AssertEqual g:expected, Reverse(g:value)
+
+Execute (a sentence with punctuation):
+  let g:value = "I'm hungry!"
+  let g:expected = "!yrgnuh m'I"
+  AssertEqual g:expected, Reverse(g:value)
+
+Execute (a palindrome):
+  let g:value = "racecar"
+  let g:expected = "racecar"
+  AssertEqual g:expected, Reverse(g:value)
+
+Execute (an even-sized word):
+  let g:value = "drawer"
+  let g:expected = "reward"
+  AssertEqual g:expected, Reverse(g:value)
+
+Execute (wide characters):
+  let g:value = "子猫"
+  let g:expected = "猫子"
+  AssertEqual g:expected, Reverse(g:value)
+
+Execute (grapheme cluster with pre-combined form):
+  let g:value = "Würstchenstand"
+  let g:expected = "dnatsnehctsrüW"
+  AssertEqual g:expected, Reverse(g:value)
+
+Execute (grapheme clusters):
+  let g:value = "ผู้เขียนโปรแกรม"
+  let g:expected = "มรกแรปโนยขีเผู้"
+  AssertEqual g:expected, Reverse(g:value)
