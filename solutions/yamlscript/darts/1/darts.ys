@@ -1,0 +1,9 @@
+!YS-v0
+
+defn score(x y):
+  spot =: (+ (pow x 2) (pow y 2))
+  cond:
+    spot <= (pow  1 2): 10
+    spot <= (pow  5 2):  5
+    spot <= (pow 10 2):  1
+    else:                0
