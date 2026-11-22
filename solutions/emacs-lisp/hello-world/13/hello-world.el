@@ -1,0 +1,23 @@
+(defun hello ()
+  (let* ((specs (list (cons ?  (list 6))
+                      (cons ?! (list 12))
+                      (cons ?, (list 5))
+                      (cons ?d (list 11))
+                      (cons ?e (list 1))
+                      (cons ?h (list 0))
+                      (cons ?l (list 2 3 10))
+                      (cons ?o (list 4 8))
+                      (cons ?r (list 9))
+                      (cons ?w (list 7))))
+         (str-len (seq-reduce 
+                   (lambda (acc spec)
+                     (+ acc (length (cdr spec))))
+                   specs
+                   0))
+         (result (make-string str-len 0)))
+    (dolist (spec specs)
+      (dolist (pos (cdr spec))
+        (setf (elt result pos) (car spec))))
+    (upcase-initials result)))
+
+(provide 'hello-world)
