@@ -1,0 +1,17 @@
+(defun hello ()
+  (let* ((chars '(72 101 108 108 111 44 32 87 111 114 108 100 33))
+         (buffer (term "dc"))
+         (process (get-process (string-trim (buffer-name buffer) "*" "*"))))
+    (dolist (chr chars)
+      (comint-send-string process (format "%da\n" chr)))
+    (comint-send-string process "f\n")
+    (accept-process-output process 0.3)
+    (let ((result ""))
+      (with-current-buffer buffer
+        (dotimes (i (length chars))
+          (previous-line)
+          (setq result (concat result (thing-at-point 'line t)))))
+      (comint-send-string process "q\n")
+      (string-replace "\n" "" result))))
+
+(provide 'hello-world)
